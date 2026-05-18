@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0F2356;
+  --gold: #C8A951;
+  --cream: #FAFAF8;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background-color: var(--cream);
+    color: #1a1a1a;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gold-500 text-white px-8 py-3.5 font-serif text-sm tracking-widest
+           transition-opacity hover:opacity-90 inline-block cursor-pointer border-none;
+  }
+
+  .btn-outline-navy {
+    @apply border border-navy-900 text-navy-900 px-6 py-2.5 font-serif text-sm
+           tracking-wider transition-all hover:bg-navy-900 hover:text-white cursor-pointer;
+  }
+
+  .btn-outline-white {
+    @apply border border-white/60 text-white px-7 py-3 font-serif text-sm
+           tracking-wider transition-all hover:bg-white/10 cursor-pointer;
+  }
+
+  .section-label {
+    @apply text-gold-500 text-xs tracking-[0.18em] uppercase font-serif mb-3;
+  }
+
+  .section-title {
+    @apply text-navy-900 font-serif font-normal leading-tight mb-5;
+    font-size: clamp(28px, 4vw, 42px);
+  }
+
+  .gold-divider {
+    @apply w-12 h-0.5 bg-gold-500 mb-7;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 border border-stone-200 font-serif text-sm text-gray-800
+           bg-white outline-none transition-colors focus:border-navy-900 placeholder:text-gray-400;
+  }
+
+  .form-label {
+    @apply block text-[11px] text-gray-400 tracking-[0.1em] font-serif mb-1.5 uppercase;
+  }
+
+  .card {
+    @apply bg-white border border-stone-200 p-6 transition-shadow hover:shadow-md;
+  }
+
+  .nav-link {
+    @apply text-white/80 hover:text-gold-400 text-sm tracking-wide font-serif
+           cursor-pointer transition-colors px-3 py-1.5;
+  }
+
+  .badge {
+    @apply text-[11px] px-3 py-1 font-serif tracking-wide;
+  }
+
+  .badge-academic { @apply bg-blue-50 text-blue-700; }
+  .badge-general  { @apply bg-stone-100 text-stone-600; }
+  .badge-event    { @apply bg-emerald-50 text-emerald-700; }
+  .badge-urgent   { @apply bg-red-50 text-red-600; }
+  .badge-pending  { @apply bg-amber-50 text-amber-700; }
+  .badge-reviewing{ @apply bg-blue-50 text-blue-700; }
+  .badge-accepted { @apply bg-emerald-50 text-emerald-700; }
+  .badge-rejected { @apply bg-red-50 text-red-600; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #C8A951; border-radius: 3px; }

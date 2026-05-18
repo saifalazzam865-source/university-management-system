@@ -1,0 +1,54 @@
+# ============================================================
+#  University Management System — .gitignore
+# ============================================================
+
+# Next.js build output
+.next/
+out/
+
+# Production build
+build/
+dist/
+
+# Node modules
+node_modules/
+
+# ── Environment files — NEVER commit these ────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+# .env.example is intentionally NOT ignored (safe template)
+
+# ── Uploaded files ────────────────────────────────────────────
+# Use cloud storage (S3/Cloudinary) in production instead
+public/uploads/*
+!public/uploads/.gitkeep
+
+# ── OS / Editor junk ─────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ── Testing ──────────────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ── Misc ─────────────────────────────────────────────────────
+.cache/
+.vercel/
+*.tsbuildinfo
+next-env.d.ts
