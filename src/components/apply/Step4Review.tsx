@@ -1,5 +1,5 @@
 'use client'
-import { formatFileSize, getFileIcon } from '@/lib/upload'
+import { formatFileSize, getFileIcon } from '@/lib/upload-utils'
 import type { Step1Data }              from './Step1Personal'
 import type { Step2Data }              from './Step2Academic'
 import type { UploadedDocInfo }        from './Step3Documents'

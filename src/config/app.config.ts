@@ -34,10 +34,6 @@ export const AUTH_CONFIG = {
 } as const
 
 export const UPLOAD_CONFIG = {
-  dir:          () => {
-    const path = require('path')
-    return path.join(process.cwd(), 'public', 'uploads')
-  },
   maxBytes:     () => parseInt(process.env.UPLOAD_MAX_BYTES ?? String(10 * 1024 * 1024), 10),
   allowedMimes: new Set([
     'application/pdf',
@@ -48,6 +44,14 @@ export const UPLOAD_CONFIG = {
     'application/msword',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   ]),
+} as const
+
+// Cloud storage (Cloudinary). Read lazily so a missing var never breaks the build.
+export const CLOUDINARY_CONFIG = {
+  cloudName: () => process.env.CLOUDINARY_CLOUD_NAME!,
+  apiKey:    () => process.env.CLOUDINARY_API_KEY!,
+  apiSecret: () => process.env.CLOUDINARY_API_SECRET!,
+  folder:    () => process.env.CLOUDINARY_FOLDER ?? 'university-management-system/applications',
 } as const
 
 export const RATE_LIMIT_CONFIG = {

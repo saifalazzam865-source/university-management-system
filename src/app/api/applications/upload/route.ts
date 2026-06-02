@@ -3,7 +3,7 @@ import { connectDB }         from '@/lib/db'
 import { ApplicationModel }  from '@/models'
 import type { IUploadedDoc } from '@/models/Application'
 import { withHandler, apiSuccess, apiError } from '@/lib/apiHandler'
-import { saveFile, validateFile } from '@/lib/upload'
+import { saveFile, validateFile } from '@/lib/storage'
 import { DOCUMENT_FIELDS }   from '@/constants'
 
 export const POST = withHandler('public', async (req: NextRequest) => {

@@ -5,7 +5,7 @@ import { formatDate }   from '@/lib/utils'
 import { notFound }     from 'next/navigation'
 import Link             from 'next/link'
 import { AdminReviewPanel } from '@/components/admin/AdminReviewPanel'
-import { getFileUrl, formatFileSize, getFileIcon } from '@/lib/upload'
+import { getFileUrl, formatFileSize, getFileIcon } from '@/lib/upload-utils'
 
 interface Props {
   params: { id: string }

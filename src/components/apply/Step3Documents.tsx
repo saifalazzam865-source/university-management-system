@@ -1,6 +1,6 @@
 'use client'
 import { useState, useRef, useCallback } from 'react'
-import { formatFileSize, getFileIcon }   from '@/lib/upload'
+import { formatFileSize, getFileIcon }   from '@/lib/upload-utils'
 
 interface DocField {
   key:      string
