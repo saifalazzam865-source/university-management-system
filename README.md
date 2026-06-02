@@ -109,8 +109,8 @@ This creates:
 | Role | Email | Password |
 |---|---|---|
 | Admin | `admin@ums.edu` | `Admin@1234` |
-| Student | `student@ums.edu` | `Student@1234` |
-| Student | `student2@ums.edu` | `Student@1234` |
+| Student | `student@ums.edu` | `` |
+| Student | `student2@ums.edu` | `` |
 
 Plus 6 faculties, 3 announcements, and 3 news articles.
 
