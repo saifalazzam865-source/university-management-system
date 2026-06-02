@@ -69,10 +69,15 @@ export function FacultiesClient({ initialFaculties }: { initialFaculties: Facult
     router.refresh()
     // Optimistic update
     if (editing) {
-      setFaculties(prev => prev.map(f => f._id === editing._id ? { ...f, ...payload } : f))
-    } else {
-      setFaculties(prev => [...prev, data.data])
-    }
+    setFaculties(prev => {
+  if (!editing?._id) return [...prev, data.data]
+
+  return prev.map(f =>
+    f._id === editing._id
+      ? { ...f, ...payload }
+      : f
+  )
+})
   }
 
   const handleDelete = async () => {
