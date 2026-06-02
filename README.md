@@ -108,7 +108,7 @@ This creates:
 
 | Role | Email | Password |
 |---|---|---|
-| Admin | `admin@ums.edu` | `Admin@1234` |
+| Admin | `admin@ums.edu` | `` |
 | Student | `student@ums.edu` | `` |
 | Student | `student2@ums.edu` | `` |
 
