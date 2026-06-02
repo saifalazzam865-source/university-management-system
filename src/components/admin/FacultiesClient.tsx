@@ -33,11 +33,7 @@ const EMPTY: Omit<Faculty, '_id'> = {
   order: 0,
 }
 
-export function FacultiesClient({
-  initialFaculties,
-}: {
-  initialFaculties: Faculty[]
-}) {
+export function FacultiesClient({ initialFaculties }: { initialFaculties: Faculty[] }) {
   const router = useRouter()
 
   const [faculties, setFaculties] = useState<Faculty[]>(initialFaculties)
@@ -59,27 +55,10 @@ export function FacultiesClient({
 
   const openEdit = (f: Faculty) => {
     setEditing(f)
-    setForm({
-      name: f.name,
-      icon: f.icon,
-      description: f.description,
-      dean: f.dean,
-      email: f.email,
-      phone: f.phone,
-      established: f.established,
-      programs: f.programs,
-      isActive: f.isActive,
-      order: f.order,
-    })
+    setForm({ ...f })
     setPrograms(f.programs.join(', '))
-    setError('')
     setModal(true)
   }
-
-  const set =
-    (k: keyof Omit<Faculty, '_id'>) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setForm(prev => ({ ...prev, [k]: e.target.value } as any))
 
   const handleSave = async () => {
     if (!form.name.trim()) {
@@ -88,11 +67,10 @@ export function FacultiesClient({
     }
 
     setSaving(true)
-    setError('')
 
     const payload = {
       ...form,
-      established: form.established ? Number(form.established) : undefined,
+      established: Number(form.established),
       programs: programs.split(',').map(p => p.trim()).filter(Boolean),
     }
 
@@ -119,23 +97,17 @@ export function FacultiesClient({
     setModal(false)
     router.refresh()
 
-    setFaculties(prev => {
-      if (editing) {
-        return prev.map(f =>
-          f._id === editing._id ? { ...f, ...payload } : f
-        )
-      } else {
-        return [...prev, data.data]
-      }
-    })
+    setFaculties(prev =>
+      editing
+        ? prev.map(f => (f._id === editing._id ? { ...f, ...payload } : f))
+        : [...prev, data.data]
+    )
   }
 
   const handleDelete = async () => {
     if (!delId) return
 
-    await fetch(`/api/admin/faculties/${delId}`, {
-      method: 'DELETE',
-    })
+    await fetch(`/api/admin/faculties/${delId}`, { method: 'DELETE' })
 
     setFaculties(prev => prev.filter(f => f._id !== delId))
     setDelId(null)
@@ -177,23 +149,19 @@ export function FacultiesClient({
       ) : (
         <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {faculties.map(f => (
-            <div key={f._id} className="bg-white border flex flex-col">
-              <div className="px-5 py-4 border-b flex items-center gap-3">
-                <span className="text-3xl">{f.icon}</span>
-                <div className="flex-1">
+            <div key={f._id} className="bg-white border p-4">
+              <div className="flex justify-between">
+                <div>
                   <h3>{f.name}</h3>
-                  {f.dean && <p className="text-xs">Dean: {f.dean}</p>}
+                  <p className="text-xs">{f.dean}</p>
                 </div>
+
                 <StatusBadge value={f.isActive ? 'active' : 'inactive'} />
               </div>
 
-              <div className="px-5 py-3 flex-1">
-                <p className="text-xs">
-                  {f.description || 'No description'}
-                </p>
-              </div>
+              <p className="text-xs mt-2">{f.description}</p>
 
-              <div className="px-5 py-3 flex gap-2">
+              <div className="flex gap-2 mt-3">
                 <button onClick={() => openEdit(f)}>Edit</button>
                 <button onClick={() => toggleActive(f)}>
                   {f.isActive ? 'Deactivate' : 'Activate'}
@@ -206,19 +174,19 @@ export function FacultiesClient({
       )}
 
       <Modal open={modal} onClose={() => setModal(false)} title="Faculty">
-        <div className="p-4 space-y-3">
+        <div className="p-4 space-y-2">
           <input
-            className="form-input"
             value={form.name}
-            onChange={set('name')}
+            onChange={e => setForm({ ...form, name: e.target.value })}
             placeholder="Name"
+            className="form-input"
           />
 
           <textarea
-            className="form-input"
             value={form.description}
-            onChange={set('description')}
+            onChange={e => setForm({ ...form, description: e.target.value })}
             placeholder="Description"
+            className="form-input"
           />
 
           {error && <p className="text-red-500 text-xs">{error}</p>}
