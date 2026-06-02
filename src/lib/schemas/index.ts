@@ -49,23 +49,23 @@ export const ApplicationStep1Schema = z.object({
   dateOfBirth: z.string().optional(),
   nationality: z.string().max(100).optional(),
   address:     z.string().max(500).optional(),
-  gender:      z.enum(GENDERS as [string, ...string[]]).optional(),
+  gender:      z.enum(GENDERS).optional(),
 })
 
 export const ApplicationStep2Schema = z.object({
   faculty:           z.string().min(1, 'Faculty is required'),
-  program:           z.enum(PROGRAMS as [string, ...string[]]),
+  program:           z.enum(PROGRAMS),
   specialization:    z.string().max(200).optional(),
   previousSchool:    z.string().max(300).optional(),
   graduationYear:    z.number().int().min(1980).max(2030).optional(),
   gpa:               z.number().min(0).max(4).optional(),
-  englishLevel:      z.enum(ENGLISH_LEVELS as [string, ...string[]]).optional(),
+  englishLevel:      z.enum(ENGLISH_LEVELS).optional(),
   personalStatement: z.string().max(5000).optional(),
 })
 
 export const ApplicationStatusSchema = z.object({
   id:     z.string().min(1, 'id is required'),
-  status: z.enum(ALLOWED_REVIEW_STATUSES as [string, ...string[]]),
+  status: z.enum(ALLOWED_REVIEW_STATUSES),
   note:   z.string().max(2000).optional(),
 })
 
@@ -118,7 +118,7 @@ export const NewsCreateSchema = z.object({
   title:    z.string().min(3, 'Title is required').max(500).trim(),
   excerpt:  z.string().max(1000).optional(),
   content:  z.string().max(50000).optional(),
-  category: z.enum(NEWS_CATEGORIES as [string, ...string[]]).optional(),
+  category: z.enum(NEWS_CATEGORIES).optional(),
   status:   z.enum(['draft', 'published', 'archived']).optional(),
   tags:     z.array(z.string().max(100)).max(20).optional(),
   featured: z.boolean().optional(),
@@ -131,7 +131,7 @@ export const NewsUpdateSchema = NewsCreateSchema.partial()
 export const AnnouncementCreateSchema = z.object({
   title:    z.string().min(3, 'Title is required').max(500).trim(),
   content:  z.string().min(10, 'Content is required').max(10000),
-  category: z.enum(ANNOUNCEMENT_CATEGORIES as [string, ...string[]]),
+  category: z.enum(ANNOUNCEMENT_CATEGORIES),
 })
 
 // ── Contact ───────────────────────────────────────────────────────────────────

@@ -1,12 +1,16 @@
 /**
  * Admin components barrel export.
+ *
+ * Every component in this folder is a NAMED export, so the barrel must
+ * re-export named bindings (not `default`). Mismatching these is what caused
+ * the "Module has no exported member 'default'" build errors.
  */
-export { default as AdminSidebar }    from './AdminSidebar'
-export { default as AdminTopbar }     from './AdminTopbar'
-export { default as AdminReviewPanel }from './AdminReviewPanel'
-export { default as AnnouncementsClient } from './AnnouncementsClient'
-export { default as FacultiesClient } from './FacultiesClient'
-export { default as MessagesClient }  from './MessagesClient'
-export { default as NewsClient }      from './NewsClient'
-export { default as StudentEditForm } from './StudentEditForm'
-export { default as StudentsToolbar } from './StudentsToolbar'
+export { AdminSidebar }        from './AdminSidebar'
+export { AdminTopbar }         from './AdminTopbar'
+export { AdminReviewPanel }    from './AdminReviewPanel'
+export { AnnouncementsClient } from './AnnouncementsClient'
+export { FacultiesClient }     from './FacultiesClient'
+export { MessagesClient }      from './MessagesClient'
+export { NewsClient }          from './NewsClient'
+export { StudentEditForm }     from './StudentEditForm'
+export { StudentsToolbar }     from './StudentsToolbar'
