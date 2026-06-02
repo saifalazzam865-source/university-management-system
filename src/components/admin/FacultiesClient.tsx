@@ -258,4 +258,5 @@ export function FacultiesClient({ initialFaculties }: { initialFaculties: Facult
       />
     </>
   )
+  }
 }
